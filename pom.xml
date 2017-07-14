@@ -25,6 +25,7 @@
                       </goals>
                       <configuration>
                           <source>
+                              import json
                               import groovyx.net.http.RESTClient
                               import groovy.util.slurpersupport.GPathResult
                               import static groovyx.net.http.ContentType.XML
@@ -33,7 +34,7 @@
                               
                               def response = solr.post(
                               contentType: application/json,
-                              body: {"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}
+                              body: json.dumps("auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8)
                               )
                               log.info "Solr response status: ${response.status}"
                           </source>
