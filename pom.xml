@@ -25,16 +25,16 @@
                       </goals>
                       <configuration>
                           <source>
-                              import json
+                              import groovy.json.JsonSlurper
                               import groovyx.net.http.RESTClient
                               import groovy.util.slurpersupport.GPathResult
-                              import static groovyx.net.http.ContentType.XML
+                              import static groovyx.net.http.ContentType.JSON
                               
                               solr = new RESTClient('http://localhost:8000/execution_task/')
-                              
+                              def jsonSlurper = new JsonSlurper()
                               def response = solr.post(
                               contentType: application/json,
-                              body: json.dumps("auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8)
+                              body: jsonSlurper.parseText('{"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}')
                               )
                               log.info "Solr response status: ${response.status}"
                           </source>
