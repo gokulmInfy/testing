@@ -4,6 +4,13 @@
   <artifactId>jentest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <dependencies>
+      <dependency>
+          <groupId>org.codehaus.groovy.modules.http-builder</groupId>
+          <artifactId>http-builder</artifactId>
+          <version>0.5.1</version>
+      </dependency>
+  </dependencies>
   <build>
       <plugins>
           <plugin>
