@@ -4,4 +4,36 @@
   <artifactId>jentest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.codehaus.groovy.maven</groupId>
+              <artifactId>gmaven-plugin</artifactId>
+              <version>1.0</version>
+              <executions>
+                  <execution>
+                      <phase>generate-resources</phase>
+                      <goals>
+                          <goal>execute</goal>
+                      </goals>
+                      <configuration>
+                          <source>
+                              import groovyx.net.http.RESTClient
+                              import groovy.util.slurpersupport.GPathResult
+                              import static groovyx.net.http.ContentType.XML
+                              
+                              solr = new RESTClient('http://localhost:8000/execution_task/')
+                              
+                              def response = solr.post(
+                              contentType: application/json,
+                              body: {"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}
+                              )
+                              log.info "Solr response status: ${response.status}"
+                          </source>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+      </plugins>
+  </build>
 </project>
