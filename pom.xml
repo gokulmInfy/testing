@@ -46,8 +46,8 @@
                               solr_get = new RESTClient("http://localhost:8000/report_detail")
                               log.info "HERE"
                               def response_get = solr_get.get(path : '/${response.data.report_id}/')
-                              log.info "Get request response status: ${response_get.data}"
-                              log.info "Get request response status: ${response_get.statusLine}"
+                              
+                              log.info "Get request response status: ${response_get.status}"
 
                           </source>
                       </configuration>
