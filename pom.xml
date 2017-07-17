@@ -46,7 +46,7 @@
                               log.info "Solr response report_id: ${response.data.report_id}"
                               solr_get = new RESTClient("http://localhost:8000/report_detail/")
                               log.info "HERE"
-                              def response_get = solr_get.get(path: response.data.report_id, contentType: JSON)
+                              def response_get = solr_get.get(path: response.data.report_id)
                               log.info "Get request response status: ${response_get.status}"
                               log.info "Get request response bodyy: ${response_get.data}"
 
