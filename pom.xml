@@ -41,8 +41,9 @@
                               contentType: JSON,
                               body: jsonSlurper.parseText('{"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}')
                               )
-                              log.info "Solr response body: ${response.body}"
+                              
                               log.info "Solr response: ${response}"
+                              log.info "Solr response body: ${response.data}"
                           </source>
                       </configuration>
                   </execution>
