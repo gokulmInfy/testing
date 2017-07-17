@@ -33,6 +33,7 @@
                               import groovyx.net.http.RESTClient
                               import groovy.util.slurpersupport.GPathResult
                               import static groovyx.net.http.ContentType.JSON
+                              import static groovyx.net.http.ContentType.TEXT
                               import groovy.json.JsonSlurper
                               
                               solr = new RESTClient('http://localhost:8000/execution_task/')
