@@ -3,7 +3,8 @@
   <groupId>com.jentest</groupId>
   <artifactId>jentest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
+   <name>jentest</name>
   <dependencies>
       <dependency>
           <groupId>org.codehaus.groovy.modules.http-builder</groupId>
