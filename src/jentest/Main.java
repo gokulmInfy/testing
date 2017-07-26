@@ -44,9 +44,14 @@ public class Main {
 				}
 
 				httpClient.getConnectionManager().shutdown();
-				JSONObject json = (JSONObject) new JSONParser().parse(output);
-				String x=(String) json.get("report_id");
-				System.out.println("---report_id "+x);
+				 try {
+					JSONObject json = (JSONObject) new JSONParser().parse(output);
+					String x=(String) json.get("report_id");
+					System.out.println("---report_id "+x);
+				 } catch (JSONException e) {
+    				   	System.out.println("--some exception handler code.-");
+					e.printStackTrace();
+ 			  	 }  
 
 			  } catch (MalformedURLException e) {
 
