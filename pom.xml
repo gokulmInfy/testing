@@ -11,50 +11,9 @@
           <version>0.5.1</version>
       </dependency>
     <dependency>
-    <groupId>org.codehaus.groovy</groupId>
-    <artifactId>groovy-all</artifactId>
-    <version>2.4.12</version>
+        <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpclient</artifactId>
+	      <version>4.1.1</version>
     </dependency>
-  </dependencies>
-  <build>
-      <plugins>
-          <plugin>
-              <groupId>org.codehaus.groovy.maven</groupId>
-              <artifactId>gmaven-plugin</artifactId>
-              <version>1.0</version>
-              <executions>
-                  <execution>
-                      <phase>generate-resources</phase>
-                      <goals>
-                          <goal>execute</goal>
-                      </goals>
-                      <configuration>
-                          <source>
-                              import groovyx.net.http.RESTClient
-                              import groovy.util.slurpersupport.GPathResult
-                              import static groovyx.net.http.ContentType.JSON
-                              import static groovyx.net.http.ContentType.TEXT
-                              import groovy.json.JsonSlurper
-                              
-                              solr = new RESTClient('http://localhost:8000/execution_task/')
-                              def jsonSlurper = new JsonSlurper()
-                              def response = solr.post(
-                              contentType: JSON,
-                              body: jsonSlurper.parseText('{"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}')
-                              )
-                              log.info "Solr response body: ${response.data}"
-                              log.info "Solr response report_id: ${response.data.report_id}"
-                              solr_get = new RESTClient("http://localhost:8000/report_detail/")
-                              log.info "HERE"
-                              def response_get = solr_get.get(path: response.data.report_id)
-                              log.info "Get request response status: ${response_get.status}"
-                              log.info "Get request response bodyy: ${response_get.data}"
-
-                          </source>
-                      </configuration>
-                  </execution>
-              </executions>
-          </plugin>
-      </plugins>
-  </build>
+   </dependencies>  
 </project>
