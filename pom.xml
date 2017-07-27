@@ -5,44 +5,25 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>jentest</name>
-  <dependencies>
-      <dependency>
-          <groupId>org.codehaus.groovy.modules.http-builder</groupId>
-          <artifactId>http-builder</artifactId>
-          <version>0.5.1</version>
-      </dependency>
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-	      <artifactId>httpclient</artifactId>
-	      <version>4.1.1</version>
-    </dependency>
-<dependency>
-   <groupId>com.googlecode.json-simple</groupId>
-   <artifactId>json-simple</artifactId>
-   <version>1.1.1</version>
-</dependency>
-   </dependencies>  
-	<build>
-        <sourceDirectory>src</sourceDirectory>
-		 <plugins>
-    <plugin>
-      <!-- Build an executable JAR -->
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-jar-plugin</artifactId>
-      <version>3.0.2</version>
-      <configuration>
-        <archive>
-          <manifest>
-            <addClasspath>true</addClasspath>
-            <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.jentest.Main</mainClass>
-          </manifest>
-        </archive>
-      </configuration>
-    </plugin>
-  </plugins>
-        <plugins>
-            <plugin>
+  <build>
+   <sourceDirectory>src</sourceDirectory>
+	<plugins>
+	<plugin>
+	      <!-- Build an executable JAR -->
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-jar-plugin</artifactId>
+	      <version>3.0.2</version>
+	      <configuration>
+		<archive>
+		  <manifest>
+		    <addClasspath>true</addClasspath>
+		    <classpathPrefix>lib/</classpathPrefix>
+		    <mainClass>com.jentest.Main</mainClass>
+		  </manifest>
+		</archive>
+	      </configuration>
+	    </plugin>
+	    <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
                 <configuration>
@@ -61,4 +42,21 @@
         </plugins>
 
     </build>
+	<dependencies>
+      <dependency>
+          <groupId>org.codehaus.groovy.modules.http-builder</groupId>
+          <artifactId>http-builder</artifactId>
+          <version>0.5.1</version>
+      </dependency>
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpclient</artifactId>
+	      <version>4.1.1</version>
+    </dependency>
+<dependency>
+   <groupId>com.googlecode.json-simple</groupId>
+   <artifactId>json-simple</artifactId>
+   <version>1.1.1</version>
+</dependency>
+   </dependencies>  
 </project>
