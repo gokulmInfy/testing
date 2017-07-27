@@ -11,13 +11,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import java.util.Properties;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.print("Hello World");
-
+		System.out.print("Hello World \n");
+		String x = null;
 		 try {
 
 				DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -39,20 +42,22 @@ public class Main {
 		                        new InputStreamReader((response.getEntity().getContent())));
 
 				String output;
+				StringBuilder jsonBuilder = new StringBuilder();
 				System.out.println("Output from Server .... \n");
 				while ((output = br.readLine()) != null) {
-					System.out.println(output);
+					jsonBuilder.append(output);
+					
 				}
-
+				System.out.println(jsonBuilder.toString());
 				httpClient.getConnectionManager().shutdown();
-				/* try {
-					JSONObject json = (JSONObject) new JSONParser().parse(output);
-					String x=(String) json.get("report_id");
+				 try {
+					JSONObject json = (JSONObject) new JSONParser().parse(jsonBuilder.toString());
+					x=(String) json.get("report_id");
 					System.out.println("---report_id "+x);
 				 } catch (ParseException e) {
     				   	System.out.println("--some exception handler code.-");
 					e.printStackTrace();
- 			  	 }*/  
+ 			  	 }
 
 			  } catch (MalformedURLException e) {
 
@@ -63,6 +68,30 @@ public class Main {
 				e.printStackTrace();
 
 			  }
+			Properties prop = new Properties();
+			OutputStream output1 = null;
+			try {
+
+				output1 = new FileOutputStream("config.properties");
+
+				// set the properties value
+				prop.setProperty("awesomeness", "!");
+				prop.setProperty("report_id", x);
+				// save properties to project root folder
+				prop.store(output1, null);
+
+			} catch (IOException io) {
+				io.printStackTrace();
+			} finally {
+				if (output1 != null) {
+					try {
+						output1.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
 
 			}
 	
