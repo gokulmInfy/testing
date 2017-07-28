@@ -23,9 +23,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		System.out.print("Hello World \n");
 		String x = null;
-		Properties prop = new Properties();
-		InputStream input = null;
-
+		
 		 try {
 
 				DefaultHttpClient httpClient = new DefaultHttpClient();
