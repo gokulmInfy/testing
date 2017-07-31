@@ -3,58 +3,93 @@
   <groupId>com.jentest</groupId>
   <artifactId>jentest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <dependencies>
+  <packaging>jar</packaging>
+  <name>jentest</name>
+  <build>
+   <sourceDirectory>src</sourceDirectory>
+	<plugins>
+	<plugin>
+	      <!-- Build an executable JAR -->
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-jar-plugin</artifactId>
+	      <version>3.0.2</version>
+	      <configuration>
+		<archive>
+		  <manifest>
+		    <addClasspath>true</addClasspath>
+		    <classpathPrefix>lib/</classpathPrefix>
+		    <mainClass>jentest.Main</mainClass>
+		  </manifest>
+		</archive>
+		      <descriptorRefs>
+			<descriptorRef>jar-with-dependencies</descriptorRef>
+		</descriptorRefs>
+	      </configuration>
+	    </plugin>
+	<plugin>
+	<artifactId>maven-assembly-plugin</artifactId>
+	<configuration>
+		<archive>
+			<manifest>
+				<mainClass>jentest.Main</mainClass>
+				<addClasspath>true</addClasspath>
+				<classpathPrefix>dependency-jars/</classpathPrefix>
+			</manifest>
+		</archive>
+		<descriptorRefs>
+			<descriptorRef>jar-with-dependencies</descriptorRef>
+		</descriptorRefs>
+	</configuration>
+</plugin>
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-dependency-plugin</artifactId>
+	<executions>
+	  <execution>
+		<id>copy-dependencies</id>
+		<goals>
+			<goal>copy-dependencies</goal>
+		</goals>
+		<configuration>
+			<outputDirectory>target/dependency-jars/</outputDirectory>
+		</configuration>
+	  </execution>
+	 </executions>
+</plugin>
+	    <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>jentest.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+	<dependencies>
       <dependency>
           <groupId>org.codehaus.groovy.modules.http-builder</groupId>
           <artifactId>http-builder</artifactId>
           <version>0.5.1</version>
       </dependency>
     <dependency>
-    <groupId>org.codehaus.groovy</groupId>
-    <artifactId>groovy-all</artifactId>
-    <version>2.4.12</version>
+        <groupId>org.apache.httpcomponents</groupId>
+	      <artifactId>httpclient</artifactId>
+	      <version>4.1.1</version>
     </dependency>
-  </dependencies>
-  <build>
-      <plugins>
-          <plugin>
-              <groupId>org.codehaus.groovy.maven</groupId>
-              <artifactId>gmaven-plugin</artifactId>
-              <version>1.0</version>
-              <executions>
-                  <execution>
-                      <phase>generate-resources</phase>
-                      <goals>
-                          <goal>execute</goal>
-                      </goals>
-                      <configuration>
-                          <source>
-                              import groovyx.net.http.RESTClient
-                              import groovy.util.slurpersupport.GPathResult
-                              import static groovyx.net.http.ContentType.JSON
-                              import static groovyx.net.http.ContentType.TEXT
-                              import groovy.json.JsonSlurper
-                              
-                              solr = new RESTClient('http://localhost:8000/execution_task/')
-                              def jsonSlurper = new JsonSlurper()
-                              def response = solr.post(
-                              contentType: JSON,
-                              body: jsonSlurper.parseText('{"auth_token": "ac2e1ab0-0805-45df-af1f-a82f070ba9b7", "job_id": 8}')
-                              )
-                              log.info "Solr response body: ${response.data}"
-                              log.info "Solr response report_id: ${response.data.report_id}"
-                              solr_get = new RESTClient("http://localhost:8000/report_detail/")
-                              log.info "HERE"
-                              def response_get = solr_get.get(path: response.data.report_id)
-                              log.info "Get request response status: ${response_get.status}"
-                              log.info "Get request response bodyy: ${response_get.data}"
-
-                          </source>
-                      </configuration>
-                  </execution>
-              </executions>
-          </plugin>
-      </plugins>
-  </build>
+<dependency>
+   <groupId>com.googlecode.json-simple</groupId>
+   <artifactId>json-simple</artifactId>
+   <version>1.1.1</version>
+</dependency>
+   </dependencies>  
 </project>
