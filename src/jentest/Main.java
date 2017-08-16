@@ -22,9 +22,15 @@ import java.io.OutputStream;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String report_id = null;
 		
+		String report_id = null, hostUrl = args[0], jobId = args[1];
+		
+		for (String s: args) {           
+			
+	        	System.out.println(s); 
+    		}
+		if (hostUrl != null && jobId != null)
+		{		
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(
@@ -96,6 +102,9 @@ public class Main {
 					e.printStackTrace();
 				}
 			}
+		}
+		}else{
+			System.out.println("Accepting 2 arguments hostUrl and jobId, cannot be null"); 
 		}
 	}
 
