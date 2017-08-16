@@ -33,9 +33,9 @@ public class Main {
 		{		
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
-			HttpPost postRequest = new HttpPost(
-				"http://localhost:8000/execution_task/");
-			StringEntity input = new StringEntity("{\"auth_token\": \"ac2e1ab0-0805-45df-af1f-a82f070ba9b7\", \"job_id\": 8}");
+			HttpPost postRequest = new HttpPost(hostUrl);
+				//"http://localhost:8000/execution_task/");
+			StringEntity input = new StringEntity("{\"auth_token\": \"ac2e1ab0-0805-45df-af1f-a82f070ba9b7\", \"job_id\":"+jobId+"}");
 			input.setContentType("application/json");
 			postRequest.setEntity(input);
 			HttpResponse response = httpClient.execute(postRequest);
