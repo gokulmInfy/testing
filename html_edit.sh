@@ -14,5 +14,5 @@ sed -e 's/row/row1/g' ./reports/index.html > ./reports/index1.tmp
 mv ./reports/index1.tmp ./reports/index.html
 sed -e 's/dataTable/dataTable111/g' ./reports/index.html > ./reports/index1.tmp
 mv ./reports/index1.tmp ./reports/index.html
-sed -e 's/\/static\//\.ws\/reports\/\/static\//g' ./reports/index.html > ./reports/index1.tmp
+sed -e 's/\/static\//\.\/ws\/reports\/static\//g' ./reports/index.html > ./reports/index1.tmp
 mv ./reports/index1.tmp ./reports/index.html
